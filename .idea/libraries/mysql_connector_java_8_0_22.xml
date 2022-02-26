@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="mysql-connector-java-8.0.22">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.22.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/neo4j-jdbc-driver-4.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
