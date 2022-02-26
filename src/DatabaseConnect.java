@@ -1,4 +1,5 @@
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -11,13 +12,25 @@ import java.util.logging.Logger;
 public class DatabaseConnect implements SMSManager,Reports{
     final private static Logger logger = Logger.getLogger(DatabaseConnect.class.getName());
     private static Connection con = null;
-    private Statement statement = null;
+    private static Statement statement = null;
     private ResultSet resultSet = null;
-    private String query;
+    private static String query;
     private Sms sms = null;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         DatabaseConnect.connect();
+
+        Promo promo = new Promo("P1ZZA","Piso Pizza","1234555",LocalDateTime.of(2021, 02, 01, 10, 0),
+                LocalDateTime.of(2021, 06, 30, 23, 59));
+        Promo promo1 = new Promo("P0WER","People Power - 50% off on PowerMac Devices","9693722",LocalDateTime.of(2022, 02, 26, 9, 0),
+                LocalDateTime.of(2022, 02, 28, 22, 59));
+        Promo promo2 = new Promo("CRYPTO", "Earn 100K BNB Trial Fund - Learn and Trade", "2778622", LocalDateTime.of(2022, 03, 01, 04, 0),
+                LocalDateTime.of(2022, 9, 06, 23, 59));
+
+        DatabaseConnect.insertPromo(promo);
+        DatabaseConnect.insertPromo(promo1);
+        DatabaseConnect.insertPromo(promo2);
+
 
         DatabaseConnect.disconnect();
     }
@@ -61,7 +74,7 @@ public class DatabaseConnect implements SMSManager,Reports{
         }
     }
 
-    public String insertPromo(Promo.Promos promo) {
+    public static void insertPromo(Promo promo) {
         query = "INSERT INTO SMS.table_promo " +
                 "(details, shortcode, startdate, enddate, promo_code) " +
                 "values (" +
@@ -90,11 +103,10 @@ public class DatabaseConnect implements SMSManager,Reports{
 
         logger.log(Level.INFO, "INSERTED DATA: " + promo.toString());
         disconnect();
-        return "Created Promo: " + promo.getDetails();
     }
 
 
-    public void insertSMS(Sms sms) {
+    public static void insertSMS(Sms sms) {
         query = "INSERT INTO SMS.table_sms " +
                 "(msisdn, recipient, sender, shortCode, " +
                 "transaction_id, timestamp) " +

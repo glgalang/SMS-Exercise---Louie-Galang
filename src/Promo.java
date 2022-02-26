@@ -2,6 +2,70 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 public class Promo {
+    private String promoCode;
+    private String details;
+    private String shortcode;
+    private LocalDateTime start_date;
+    private LocalDateTime end_date;
+
+    public Promo(String promoCode, String details, String shortcode, LocalDateTime start_date, LocalDateTime end_date){
+        this.promoCode = promoCode;
+        this.details = details;
+        this.shortcode = shortcode;
+        this.start_date = start_date;
+    }
+
+
+
+    public String getPromoCode() {
+        return promoCode;
+    }
+
+    public void setPromoCode(String promoCode) {
+        this.promoCode = promoCode;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    public String getShortcode() {
+        return shortcode;
+    }
+
+    public void setShortcode(String shortcode) {
+        this.shortcode = shortcode;
+    }
+
+    public LocalDateTime getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(LocalDateTime start_date) {
+        this.start_date = start_date;
+    }
+
+    public LocalDateTime getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(LocalDateTime end_date) {
+        this.end_date = end_date;
+    }
+    public String getFormattedStart_date() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                .format(this.start_date);
+    }
+
+    public String getFormattedEnd_date() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                .format(this.end_date);
+    }
+
 
     enum Promos {
         PIZZA("P1ZZA",

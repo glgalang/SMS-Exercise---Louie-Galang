@@ -11,6 +11,7 @@ public class Main {
         smsCheck();
         validate(smsCheck());
 
+
     }
     public static Map<String, String> smsCheck() {
         Map<String,String> checkMap = new HashMap<>();
